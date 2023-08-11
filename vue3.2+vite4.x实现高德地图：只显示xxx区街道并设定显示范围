@@ -1,0 +1,77 @@
+
+
+```markdown
+
+
+本文介绍如何在高德地图中仅显示临平区的街道，并设定显示范围。我们将结合 GeoJSON 数据和高德地图 SDK 来实现此功能。
+
+## 步骤
+
+### 1. 引入高德地图 SDK
+
+确保在项目中已经引入了高德地图 SDK。
+
+### 2. 加载临平区的 GeoJSON 数据
+
+首先，我们需要从提供的 JSON 文件中加载临平区的 GeoJSON 数据。
+[下载 330113111.json 文件](https://pan.baidu.com/s/1054fzNRu9BT769-em2CsVQ?pwd=h7n1)  
+提取码: h7n1
+
+复制这段内容后打开百度网盘手机App，操作更方便哦。  
+--来自百度网盘超级会员v4的分享
+
+
+只需点击链接即可开始下载。如果你遇到任何问题或需要进一步的帮助，请随时告诉我！
+```javascript
+let geoJsonData;
+fetch('/path/to/330113111.json')
+  .then((response) => response.json())
+  .then((data) => {
+    geoJsonData = data;
+  });
+```
+
+确保将 `/path/to/330113111.json` 替换为 JSON 文件的实际路径。
+
+### 3. 使用 `getDrawSection1` 函数绘制多段线
+
+使用之前定义的 `getDrawSection1` 函数，结合加载的 GeoJSON 数据，在地图上绘制临平区的街道。
+
+```javascript
+const polylines = getDrawSection1('临平区', null, false);
+polylines.forEach(polyline => polyline.setMap(map));
+```
+
+### 4. 初始化地图
+
+使用高德地图的 `AMap.Map` 构造函数初始化地图，并设置中心点和缩放级别。
+
+```javascript
+const map = new AMap.Map('container', {
+  zoom: 15, // 设置缩放级别
+  center: [120.305456, 30.208317] // 设置临平区的中心点坐标
+});
+```
+
+### 5. 限制缩放级别和拖动范围
+
+你可以通过设置地图的属性来限制缩放级别和拖动范围。
+
+```javascript
+map.setOptions({
+  zooms: [15, 18], // 限制缩放级别在15到18之间
+  // 可以根据需要设置拖动范围
+});
+```
+
+## 结论
+
+通过上述步骤和代码，我们已经实现了只显示临平区的街道，并设定了显示范围的功能。这种方法结合了多段线的绘制和 GeoJSON 数据的处理，提供了一种灵活的方式来控制地图上的显示内容。
+
+请注意，你可能需要根据实际情况调整坐标、缩放级别和其他参数。
+
+---
+
+本文参考了[高德地图只显示某个地区或省份，并设定显示范围](https://blog.csdn.net/jiciqiang/article/details/124201632)的教程，并进一步扩展到街道级别的显示。
+
+```
