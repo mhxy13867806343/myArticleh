@@ -1,0 +1,49 @@
+#### 前言
+在现代 Web 和移动应用中，地图已经成为一项核心功能。高德地图 2.0 通过提供一套全面的 API，使开发人员能够灵活地控制和自定义地图的表现和行为。本文将重点探讨 `OverlayGroup` API，一个允许开发人员管理和操作一组覆盖物的强大工具。
+
+#### OverlayGroup API 简介
+
+`OverlayGroup` 是高德地图 2.0 中的一个重要组件，用于将多个覆盖物（例如标记、线条、多边形等）组合成一个组。通过组合，开发人员可以方便地对一组覆盖物执行相同的操作，例如批量显示、隐藏、移除等。
+
+##### 创建 OverlayGroup
+
+创建一个 `OverlayGroup` 实例非常简单：
+
+```javascript
+var overlayGroup = new AMap.OverlayGroup([marker1, marker2, polyline]);
+```
+
+##### 批量操作
+
+通过 `OverlayGroup`，你可以轻松地对组中的所有覆盖物执行批量操作：
+
+```javascript
+// 批量设置覆盖物可见
+overlayGroup.show();
+
+// 批量设置覆盖物不可见
+overlayGroup.hide();
+
+// 批量移除覆盖物
+overlayGroup.clearOverlays();
+```
+
+##### 遍历覆盖物
+
+使用 `eachOverlay` 方法遍历组中的所有覆盖物，并对每个覆盖物执行特定操作：
+
+```javascript
+overlayGroup.eachOverlay(function (overlay) {
+  // 对每个覆盖物执行操作
+});
+```
+
+#### 结论
+
+`OverlayGroup` API 是高德地图 2.0 中的一个强大工具，提供了方便地管理和操作一组覆盖物的能力。通过批量操作和灵活的遍历功能，它可以提高地图交互的效率和用户体验。
+
+想了解更多关于 `OverlayGroup` API 的详细信息，请访问 [高德地图 2.0 官方文档](https://lbs.amap.com/api/javascript-api/reference/overlay#overlaygroup)。
+
+---
+
+现在文章应该完全准确了。如果你还有其他问题或需求，请随时告诉我。
