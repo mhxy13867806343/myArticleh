@@ -1,0 +1,61 @@
+#### 前言
+在大型前端项目中，文件和目录的结构可能会变得相当复杂。使用 `jsconfig.json` 配置路径别名可以简化路径管理，提高代码可读性和可维护性。本文将详细介绍如何在前端项目中创建和配置 `jsconfig.json` 文件，并定义和使用路径别名。
+
+#### 正文
+
+##### `jsconfig.json` 是什么？
+
+`jsconfig.json` 文件是一个 JavaScript 项目的配置文件，用于配置 JavaScript 语言服务的行为。它的格式和 [TypeScript 的 `tsconfig.json`](https://www.typescriptlang.org/tsconfig) 类似，但适用于纯 JavaScript 项目。
+
+##### 创建 jsconfig.json 文件
+
+在项目的根目录下，创建一个名为 `jsconfig.json` 的文件。
+
+##### 定义路径别名
+
+在 `jsconfig.json` 文件中，定义路径别名：
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
+```
+
+##### 更新 Vite 配置
+
+在 `vite.config.js` 文件中定义相同的别名：
+
+```javascript
+export default {
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
+  }
+}
+```
+
+##### 使用路径别名
+
+使用定义的别名引用文件：
+
+```javascript
+import image from "@/assets/1.png";
+import useCustomHook from "@/hooks/a.js";
+```
+
+在支持的 IDE 中，你可以直接点击这些路径跳转到相应的文件。
+
+#### 结论
+
+路径别名是一种强大的工具，可以简化项目中的路径管理。通过配置 `jsconfig.json` 文件，你可以在项目中定义和使用路径别名。与现代开发工具的集成使得这一功能更加强大和易用。[了解更多关于 `tsconfig.json` 的信息](https://www.typescriptlang.org/tsconfig)。
+
+---
+
+这篇文章现在完整地描述了使用 `jsconfig.json` 配置路径别名的过程，并提供了有关 `tsconfig.json` 的链接。如果你还有其他问题或需要进一步的信息，请随时告诉我。
